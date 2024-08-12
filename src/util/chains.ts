@@ -5,6 +5,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.MAINNET,
   ChainId.OPTIMISM,
   ChainId.OPTIMISM_GOERLI,
+  ChainId.NAL_SEPOLIA,
   ChainId.ARBITRUM_ONE,
   ChainId.ARBITRUM_GOERLI,
   ChainId.POLYGON,
@@ -28,6 +29,7 @@ export const V2_SUPPORTED = [
 export const HAS_L1_FEE = [
   ChainId.OPTIMISM,
   ChainId.OPTIMISM_GOERLI,
+  ChainId.NAL_SEPOLIA,
   ChainId.ARBITRUM_ONE,
   ChainId.ARBITRUM_GOERLI,
   ChainId.BASE,
@@ -57,6 +59,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.OPTIMISM;
     case 420:
       return ChainId.OPTIMISM_GOERLI;
+    case 328527624:
+      return ChainId.NAL_SEPOLIA;
     case 42161:
       return ChainId.ARBITRUM_ONE;
     case 421613:
@@ -90,6 +94,7 @@ export enum ChainName {
   SEPOLIA = 'sepolia',
   OPTIMISM = 'optimism-mainnet',
   OPTIMISM_GOERLI = 'optimism-goerli',
+  NAL_SEPOLIA = 'nal-sepolia',
   ARBITRUM_ONE = 'arbitrum-mainnet',
   ARBITRUM_GOERLI = 'arbitrum-goerli',
   POLYGON = 'polygon-mainnet',
@@ -142,6 +147,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.NAL_SEPOLIA]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
   [ChainId.ARBITRUM_ONE]: [
     'ETH',
     'ETHER',
@@ -186,6 +196,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.SEPOLIA]: NativeCurrencyName.ETHER,
   [ChainId.OPTIMISM]: NativeCurrencyName.ETHER,
   [ChainId.OPTIMISM_GOERLI]: NativeCurrencyName.ETHER,
+  [ChainId.NAL_SEPOLIA]: NativeCurrencyName.ETHER,
   [ChainId.ARBITRUM_ONE]: NativeCurrencyName.ETHER,
   [ChainId.ARBITRUM_GOERLI]: NativeCurrencyName.ETHER,
   [ChainId.POLYGON]: NativeCurrencyName.MATIC,
@@ -213,6 +224,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.OPTIMISM;
     case 420:
       return ChainName.OPTIMISM_GOERLI;
+    case 328527624:
+      return ChainName.NAL_SEPOLIA;
     case 42161:
       return ChainName.ARBITRUM_ONE;
     case 421613:
@@ -256,6 +269,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_OPTIMISM!;
     case ChainId.OPTIMISM_GOERLI:
       return process.env.JSON_RPC_PROVIDER_OPTIMISM_GOERLI!;
+    case ChainId.NAL_SEPOLIA:
+      return process.env.JSON_RPC_PROVIDER_NAL_SEPOLIA!;
     case ChainId.ARBITRUM_ONE:
       return process.env.JSON_RPC_PROVIDER_ARBITRUM_ONE!;
     case ChainId.ARBITRUM_GOERLI:
@@ -322,6 +337,20 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.OPTIMISM_SEPOLIA]: new Token(
+    ChainId.OPTIMISM_SEPOLIA,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.NAL_SEPOLIA]: new Token(
+    ChainId.NAL_SEPOLIA,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.ARBITRUM_ONE]: new Token(
     ChainId.ARBITRUM_ONE,
     '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
@@ -331,6 +360,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.ARBITRUM_GOERLI]: new Token(
     ChainId.ARBITRUM_GOERLI,
+    '0xe39Ab88f8A4777030A534146A9Ca3B52bd5D43A3',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ARBITRUM_SEPOLIA]: new Token(
+    ChainId.ARBITRUM_SEPOLIA,
     '0xe39Ab88f8A4777030A534146A9Ca3B52bd5D43A3',
     18,
     'WETH',
@@ -400,7 +436,42 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     18,
     'WETH',
     'Wrapped Ether'
-  )
+  ),
+  [ChainId.ZORA]: new Token(
+    ChainId.ZORA,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ZORA_SEPOLIA]: new Token(
+    ChainId.ZORA_SEPOLIA,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ROOTSTOCK]: new Token(
+    ChainId.ROOTSTOCK,
+    '0x542fDA317318eBF1d3DEAf76E0b632741A7e677d',
+    18,
+    'WRBTC',
+    'Wrapped BTC'
+  ),
+  [ChainId.BLAST]: new Token(
+    ChainId.BLAST,
+    '0x4300000000000000000000000000000000000004',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ZKSYNC]: new Token(
+    ChainId.ZKSYNC,
+    '0x5aea5775959fbc2557cc8789bc1bf90a239d9a91',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 };
 
 function isMatic(

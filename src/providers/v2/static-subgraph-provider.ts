@@ -8,7 +8,8 @@ import {
   DAI_MAINNET,
   USDC_MAINNET,
   USDT_MAINNET,
-  WBTC_MAINNET
+  WBTC_MAINNET,
+  USDC_BASE
 } from '../token-provider';
 
 import { IV2SubgraphProvider, V2SubgraphPool } from './subgraph-provider';
@@ -32,6 +33,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ARBITRUM_ONE]: [],
   [ChainId.ARBITRUM_GOERLI]: [],
   [ChainId.OPTIMISM_GOERLI]: [],
+  [ChainId.NAL_SEPOLIA]: [],
   [ChainId.POLYGON]: [],
   [ChainId.POLYGON_MUMBAI]: [],
   [ChainId.CELO]: [],
@@ -41,7 +43,16 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.BNB]: [],
   [ChainId.AVALANCHE]: [],
   [ChainId.BASE_GOERLI]: [],
-  [ChainId.BASE]: []
+  [ChainId.BASE]: [],
+  [ChainId.BASE_GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_GOERLI]],
+  [ChainId.BASE]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE], USDC_BASE],
+  [ChainId.OPTIMISM_SEPOLIA]: [],
+  [ChainId.ARBITRUM_SEPOLIA]: [],
+  [ChainId.ZORA]: [],
+  [ChainId.ZORA_SEPOLIA]: [],
+  [ChainId.ROOTSTOCK]: [],
+  [ChainId.BLAST]: [],
+  [ChainId.ZKSYNC]: [],
 };
 
 /**
@@ -57,7 +68,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * @class StaticV2SubgraphProvider
  */
 export class StaticV2SubgraphProvider implements IV2SubgraphProvider {
-  constructor(private chainId: ChainId) {}
+  constructor(private chainId: ChainId) { }
 
   public async getPools(
     tokenIn?: Token,

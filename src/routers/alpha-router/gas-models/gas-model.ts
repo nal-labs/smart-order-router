@@ -26,6 +26,7 @@ import {
   USDC_MOONBEAM,
   USDC_OPTIMISM,
   USDC_OPTIMISM_GOERLI,
+  USDC_NAL_SEPOLIA,
   USDC_POLYGON,
   USDC_SEPOLIA,
   USDT_ARBITRUM,
@@ -34,6 +35,7 @@ import {
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
+  USDT_NAL_SEPOLIA,
   WBTC_GOERLI,
 } from '../../../providers/token-provider';
 import { IV2PoolProvider } from '../../../providers/v2/pool-provider';
@@ -61,6 +63,10 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
     DAI_OPTIMISM_GOERLI,
     USDC_OPTIMISM_GOERLI,
     USDT_OPTIMISM_GOERLI,
+  ],
+  [ChainId.NAL_SEPOLIA]: [
+    USDC_NAL_SEPOLIA,
+    USDT_NAL_SEPOLIA
   ],
   [ChainId.ARBITRUM_GOERLI]: [USDC_ARBITRUM_GOERLI],
   [ChainId.GOERLI]: [DAI_GOERLI, USDC_GOERLI, USDT_GOERLI, WBTC_GOERLI],
@@ -90,8 +96,8 @@ export type BuildOnChainGasModelFactoryType = {
   quoteToken: Token;
   v2poolProvider: IV2PoolProvider;
   l2GasDataProvider?:
-    | IL2GasDataProvider<OptimismGasData>
-    | IL2GasDataProvider<ArbitrumGasData>;
+  | IL2GasDataProvider<OptimismGasData>
+  | IL2GasDataProvider<ArbitrumGasData>;
   providerConfig?: ProviderConfig;
 };
 

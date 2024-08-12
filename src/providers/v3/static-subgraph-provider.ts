@@ -42,6 +42,7 @@ import {
   USDC_MOONBEAM,
   USDC_OPTIMISM,
   USDC_OPTIMISM_GOERLI,
+  USDC_NAL_SEPOLIA,
   USDC_POLYGON,
   USDC_SEPOLIA,
   USDT_ARBITRUM,
@@ -50,6 +51,7 @@ import {
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
+  USDT_NAL_SEPOLIA,
   WBTC_ARBITRUM,
   WBTC_GNOSIS,
   WBTC_GOERLI,
@@ -113,6 +115,11 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     USDT_OPTIMISM_GOERLI,
     WBTC_OPTIMISM_GOERLI
   ],
+  [ChainId.NAL_SEPOLIA]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.NAL_SEPOLIA]!,
+    USDC_NAL_SEPOLIA,
+    USDT_NAL_SEPOLIA
+  ],
   [ChainId.POLYGON]: [USDC_POLYGON, WETH_POLYGON, WMATIC_POLYGON],
   [ChainId.POLYGON_MUMBAI]: [
     DAI_POLYGON_MUMBAI,
@@ -154,6 +161,13 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.BASE_GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_GOERLI]],
   [ChainId.BASE]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE], USDC_BASE],
+  [ChainId.OPTIMISM_SEPOLIA]: [],
+  [ChainId.ARBITRUM_SEPOLIA]: [],
+  [ChainId.ZORA]: [],
+  [ChainId.ZORA_SEPOLIA]: [],
+  [ChainId.ROOTSTOCK]: [],
+  [ChainId.BLAST]: [],
+  [ChainId.ZKSYNC]: [],
 };
 
 /**
@@ -171,7 +185,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
   constructor(
     private chainId: ChainId,
     private poolProvider: IV3PoolProvider
-  ) {}
+  ) { }
 
   public async getPools(
     tokenIn?: Token,

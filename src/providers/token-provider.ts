@@ -211,6 +211,21 @@ export const DAI_OPTIMISM_GOERLI = new Token(
   'Dai Stablecoin'
 );
 
+export const USDC_NAL_SEPOLIA = new Token(
+  ChainId.NAL_SEPOLIA,
+  '0xe3b1a545130163ff977e06bcbae9bc55ec7ddaf6',
+  6,
+  'USDC',
+  'USD//C.e'
+)
+export const USDT_NAL_SEPOLIA = new Token(
+  ChainId.NAL_SEPOLIA,
+  '0xe4f926348d533d2b20857bd4d96ba92a4ceb9c15',
+  6,
+  'USDT',
+  'TetherUSD',
+)
+
 export const USDC_ARBITRUM = new Token(
   ChainId.ARBITRUM_ONE,
   '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
@@ -542,7 +557,7 @@ export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
     protected multicall2Provider: IMulticallProvider
-  ) {}
+  ) { }
 
   private async getTokenSymbol(
     addresses: string[],
@@ -687,10 +702,8 @@ export class TokenProvider implements ITokenProvider {
       }
 
       log.info(
-        `Got token symbol and decimals for ${
-          Object.values(addressToToken).length
-        } out of ${addresses.length} tokens on-chain ${
-          providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
+        `Got token symbol and decimals for ${Object.values(addressToToken).length
+        } out of ${addresses.length} tokens on-chain ${providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
         }`
       );
     }
@@ -754,6 +767,8 @@ export const USDT_ON = (chainId: ChainId): Token => {
       return USDT_OPTIMISM;
     case ChainId.OPTIMISM_GOERLI:
       return USDT_OPTIMISM_GOERLI;
+    case ChainId.NAL_SEPOLIA:
+      return USDT_NAL_SEPOLIA;
     case ChainId.ARBITRUM_ONE:
       return USDT_ARBITRUM;
     case ChainId.BNB:
@@ -775,6 +790,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_OPTIMISM;
     case ChainId.OPTIMISM_GOERLI:
       return USDC_OPTIMISM_GOERLI;
+    case ChainId.NAL_SEPOLIA:
+      return USDC_NAL_SEPOLIA;
     case ChainId.ARBITRUM_ONE:
       return USDC_ARBITRUM;
     case ChainId.ARBITRUM_GOERLI:
