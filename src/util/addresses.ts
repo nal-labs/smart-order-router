@@ -14,6 +14,7 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].v3CoreFactoryAddress,
   [ChainId.CELO_ALFAJORES]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO_ALFAJORES].v3CoreFactoryAddress,
   [ChainId.OPTIMISM_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.OPTIMISM_GOERLI].v3CoreFactoryAddress,
+  [ChainId.NAL]: CHAIN_TO_ADDRESSES_MAP[ChainId.NAL].v3CoreFactoryAddress,
   [ChainId.NAL_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.NAL_SEPOLIA].v3CoreFactoryAddress,
   [ChainId.SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.SEPOLIA].v3CoreFactoryAddress,
   [ChainId.ARBITRUM_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.ARBITRUM_GOERLI].v3CoreFactoryAddress,
@@ -29,6 +30,7 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].quoterAddress,
   [ChainId.CELO_ALFAJORES]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO_ALFAJORES].quoterAddress,
   [ChainId.OPTIMISM_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.OPTIMISM_GOERLI].quoterAddress,
+  [ChainId.NAL]: CHAIN_TO_ADDRESSES_MAP[ChainId.NAL].quoterAddress,
   [ChainId.NAL_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.NAL_SEPOLIA].quoterAddress,
   [ChainId.SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.SEPOLIA].quoterAddress,
   [ChainId.ARBITRUM_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.ARBITRUM_GOERLI].quoterAddress,
@@ -49,6 +51,7 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].multicallAddress,
   [ChainId.CELO_ALFAJORES]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO_ALFAJORES].multicallAddress,
   [ChainId.OPTIMISM_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.OPTIMISM_GOERLI].multicallAddress,
+  [ChainId.NAL]: CHAIN_TO_ADDRESSES_MAP[ChainId.NAL].multicallAddress,
   [ChainId.NAL_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.NAL_SEPOLIA].multicallAddress,
   [ChainId.SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.SEPOLIA].multicallAddress,
   [ChainId.ARBITRUM_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.ARBITRUM_GOERLI].multicallAddress,
@@ -62,6 +65,9 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number): string => {
   if (chainId == ChainId.BNB) {
     return BNB_SWAP_ROUTER_02_ADDRESS;
+  }
+  if (chainId == ChainId.NAL) {
+    return CHAIN_TO_ADDRESSES_MAP[ChainId.NAL].swapRouter02Address!;
   }
   if (chainId == ChainId.NAL_SEPOLIA) {
     return CHAIN_TO_ADDRESSES_MAP[ChainId.NAL_SEPOLIA].swapRouter02Address!;
@@ -148,6 +154,13 @@ export const WETH9: {
   ),
   [ChainId.OPTIMISM_SEPOLIA]: new Token(
     ChainId.OPTIMISM_GOERLI,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.NAL]: new Token(
+    ChainId.NAL,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',

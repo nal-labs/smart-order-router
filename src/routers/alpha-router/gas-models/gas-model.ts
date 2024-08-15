@@ -26,6 +26,7 @@ import {
   USDC_MOONBEAM,
   USDC_OPTIMISM,
   USDC_OPTIMISM_GOERLI,
+  USDC_NAL,
   USDC_NAL_SEPOLIA,
   USDC_POLYGON,
   USDC_SEPOLIA,
@@ -35,6 +36,7 @@ import {
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
+  USDT_NAL,
   USDT_NAL_SEPOLIA,
   WBTC_GOERLI,
 } from '../../../providers/token-provider';
@@ -63,6 +65,10 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
     DAI_OPTIMISM_GOERLI,
     USDC_OPTIMISM_GOERLI,
     USDT_OPTIMISM_GOERLI,
+  ],
+  [ChainId.NAL]: [
+    USDC_NAL,
+    USDT_NAL
   ],
   [ChainId.NAL_SEPOLIA]: [
     USDC_NAL_SEPOLIA,

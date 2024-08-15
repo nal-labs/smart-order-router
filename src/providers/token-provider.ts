@@ -211,6 +211,21 @@ export const DAI_OPTIMISM_GOERLI = new Token(
   'Dai Stablecoin'
 );
 
+export const USDC_NAL = new Token(
+  ChainId.NAL,
+  '0xc58d7f2f6b3cc51f9ed1c7a952c79104e4f81be7',
+  6,
+  'USDC',
+  'USD//C.e'
+)
+export const USDT_NAL = new Token(
+  ChainId.NAL,
+  '0xf10b577addd414ca97731c3ab772cd212813b14d',
+  6,
+  'USDT',
+  'TetherUSD',
+)
+
 export const USDC_NAL_SEPOLIA = new Token(
   ChainId.NAL_SEPOLIA,
   '0xe3b1a545130163ff977e06bcbae9bc55ec7ddaf6',
@@ -767,6 +782,8 @@ export const USDT_ON = (chainId: ChainId): Token => {
       return USDT_OPTIMISM;
     case ChainId.OPTIMISM_GOERLI:
       return USDT_OPTIMISM_GOERLI;
+    case ChainId.NAL:
+      return USDT_NAL;
     case ChainId.NAL_SEPOLIA:
       return USDT_NAL_SEPOLIA;
     case ChainId.ARBITRUM_ONE:
@@ -790,6 +807,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_OPTIMISM;
     case ChainId.OPTIMISM_GOERLI:
       return USDC_OPTIMISM_GOERLI;
+    case ChainId.NAL:
+      return USDC_NAL;
     case ChainId.NAL_SEPOLIA:
       return USDC_NAL_SEPOLIA;
     case ChainId.ARBITRUM_ONE:
